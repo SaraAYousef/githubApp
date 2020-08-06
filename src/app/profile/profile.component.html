@@ -1,3 +1,46 @@
-<p>
-  profile works!
-</p>
+<div class="container">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-sm-3">
+          <img src="{{profile.avatar_url}}" class="img-responsive" alt="Profile Image">
+          <h3>
+            {{profile.name}}
+          </h3>
+          <p>
+            <small>{{profile.login}}</small>
+          </p>
+          <div>
+            <button class="btn btn-large btn-block btn-light" type="button" >
+              <i class="fa fa-heart-o" style="color: red;"></i>Sponser
+            </button>
+            <button class="btn btn-large btn-block btn-light" type="button">Follow</button>
+          </div>
+          <div>
+            <p *ngIf="profile.company"><i class="fa fa-users"></i>@{{profile.company}}</p>
+          </div>
+          <div>
+            <p *ngIf="profile.location"><i class="fa fa-map-marker"></i>{{profile.location}}</p>
+          </div>
+          <div>
+            <p *ngIf="profile.blog"><i class="fa fa-link"></i>{{profile.blog}}</p>
+          </div>
+        </div>
+        <div class="col-sm-9">
+          <div class="container">
+            <div class="topnav">
+              <a href="#">overview</a>
+              <a class="active" href="#">Repositories<span class="badge badge-light">{{profile.public_repos}}</span></a>
+              <a href="#">Projects</a>
+              <a href="#">Stars</a>
+              <a href="#">Followers<span class="badge badge-light">{{profile.followers}}</span></a>
+              <a href="#">Following<span class="badge badge-light">{{profile.following}}</span></a>
+            </div>
+          </div>
+          <br>
+          <app-repos></app-repos>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

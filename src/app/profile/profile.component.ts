@@ -9,7 +9,6 @@ import { UserService } from '../service/user.service';
 export class ProfileComponent implements OnInit {
 
   profile:any[];
-  repos: any[];
   username:string;
 
   constructor(private user : UserService) { }
@@ -18,12 +17,7 @@ export class ProfileComponent implements OnInit {
   	this.user.getUser().subscribe(profile => {
   		console.log(profile);
   		this.profile = profile;
-  	});
-
-  	this.user.getRepos().subscribe(repos => {
-  		console.log(repos);
-  		this.repos = repos;
-  	})  	
+  	});  	
   }
 
 }

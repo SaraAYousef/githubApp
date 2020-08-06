@@ -1,0 +1,54 @@
+
+<div class="container">
+  <form action="" class="search-form">
+    <div class="form-group">
+      <input type="text" class="form-control" placeholder="Find a repository..." [(ngModel)]="repoName" name="repoName">
+    </div>
+  </form>
+  <hr>
+  <div class="panel panel-default">
+    <div *ngIf="repos | filter:repoName:'name' as filteredRepos">
+      <div *ngIf="repoName">
+        <div class="row">
+          <div class="col-sm-10">
+            <span>{{filteredRepos?.length}} results for repositories matching {{repoName}}</span>
+          </div>
+          <div class="col-sm-2" (click)="ClearFilter()">
+            <i class="fa fa-close"></i>
+            <span>Clear filter</span>
+          </div>
+        </div>
+        <hr>
+      </div>
+      <div class="panel-body" *ngFor="let repo of filteredRepos">
+        <div class="row">
+          <div class="col-sm-10">
+            <h3 class="clearfix" style="color: blue">
+              {{repo.name}} 
+            </h3>
+            <p *ngIf="repo.description">{{repo.description}}</p>
+          </div>
+          <div class="col-sm-2">
+            <button class="btn btn-light" type="button" >
+              <i class="fa fa-star"></i>Star
+            </button>
+          </div>
+        </div>
+        <span class="label label-default col-sm-2">
+          <i class="fa fa-circle" style="color: blue"></i>
+          {{repo.language}}
+        </span>
+        <span *ngIf="repo.forks_count > 0" class="label label-default col-sm-2">
+          <i class="fa fa-code-fork"></i>
+          {{repo.forks_count}}
+        </span>
+        <span *ngIf="repo.stargazers_count > 0" class="label label-default col-sm-2">
+          <i class="fa fa-star"></i>
+          {{repo.stargazers_count}}
+        </span>
+        <span class="label label-default col-sm-2">{{calcDate(repo.updated_at)}}</span>
+        <hr>
+      </div>
+    </div>
+  </div>
+</div>
